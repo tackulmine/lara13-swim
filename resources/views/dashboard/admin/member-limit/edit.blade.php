@@ -1,0 +1,44 @@
+@extends('layouts.app')
+
+@section('content')
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h5 class="m-0 font-weight-bold text-primary">{{ $pageTitle }}</h5>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        {!! Form::open([
+            'route' => [$baseRouteName . 'update', $id],
+            'class' => 'needs-validation',
+            'novalidate' => true,
+            'method' => 'put',
+        ]) !!}
+        {{ Form::hidden('id', $id) }}
+        <div class="card-body">
+
+          @include('layouts.partials._notif')
+
+          @include($baseViewPath . '_form-edit')
+
+        </div>
+        <!-- /.box-body -->
+        <div class="card-footer text-center text-lg-left">
+          @include('layouts.partials.form._edit-buttons')
+        </div>
+        <!-- /.box-footer -->
+        {{ html()->form()->close() }}
+      </div>
+    </div>
+  </div>
+
+  @include('layouts.partials.form._edit-modal')
+@endsection
+
+@push('css')
+  @include($baseViewPath . '_css')
+@endpush
+@push('js')
+  @include($baseViewPath . '_js')
+@endpush

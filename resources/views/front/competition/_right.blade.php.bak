@@ -1,0 +1,16 @@
+@if (!empty($eventStageRangkingParticipants))
+  @foreach ($eventStageRangkingParticipants as $participant)
+    @php
+      $i = $loop->iteration - 1;
+      $j = $loop->iteration < 10 ? (10 - $loop->iteration) : 0;
+    @endphp
+    <div class="px-1 py-0{{ ($j <= 0 and $j < 10) ? '' : ' bg-gray-' . $j . '00' }}{{ ($j > 4 and $j < 10) ? ' text-white' : '' }}">
+      <div class="row no-gutters{{ $participant->disqualification ? ' text-danger' : '' }}">
+        <div class="col-lg-10">{{ $loop->iteration }}. {{ $participant->masterParticipant->name }} <small>({{ $participant->masterParticipant->masterSchool->name }})</small></div>
+        <div class="col-lg-2 text-right">
+          {{ $participant->point_text ?? '00:00.00' }}
+        </div>
+      </div>
+    </div>
+  @endforeach
+@endif

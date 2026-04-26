@@ -1,0 +1,117 @@
+@if (!empty($eventSessionParticipants))
+  @include('layouts.partials._notif')
+  @php
+    // dd($event->completed);
+  @endphp
+  @if ($event->completed)
+
+  @else
+    @if ($eventStage->completed)
+        @auth
+          {!! Form::open(['url' => '/competition/' . $event->slug . '/done', 'method' => 'put', 'onsubmit' => 'return confirm("Are you sure?")']) !!}
+          <p class="text-center">Klik tombol di bawah untuk mengakhiri kompetisi!</p>
+          <p class="text-center my-2"><button class="btn btn-sm btn-primary" type="submit">Akhiri kompetisi <i class="fa fa-arrow-right"></i></button></p>
+          {{ html()->form()->close() }}
+        @endauth
+    @else
+      @if ($eventSession->completed)
+        @auth
+          {!! Form::open(['url' => '/competition/' . $event->slug . '/complete', 'method' => 'put']) !!}
+          {!! Form::hidden('event_stage', $eventStage->id) !!}
+          <p class="text-center">Klik tombol di bawah untuk melanjutkan acara lain!</p>
+          <p class="text-center my-2"><button class="btn btn-sm btn-primary" type="submit">Acara selanjutnya <i class="fa fa-arrow-right"></i></button></p>
+          {{ html()->form()->close() }}
+        @endauth
+      @else
+        @auth
+          {!! Form::open(['url' => '/competition/' . $event->slug . '/update', 'method' => 'put']) !!}
+          {!! Form::hidden('event_stage', $eventStage->id) !!}
+          {!! Form::hidden('event_session', $eventSession->id) !!}
+        @endauth
+        @foreach ($eventSessionParticipants as $participant)
+          @php
+            switch ($loop->iteration) {
+              case 1:
+                $class = 'border-left-primary';
+                break;
+              case 2:
+                $class = 'border-left-success';
+                break;
+              case 3:
+                $class = 'border-left-info';
+                break;
+              case 4:
+                $class = 'border-left-warning';
+                break;
+              case 5:
+                $class = 'border-left-danger';
+                break;
+              default:
+                $class = 'border-left-primary';
+                break;
+            }
+          @endphp
+          <div class="card m-0 mb-2{{ !empty($class) ? ' ' . $class : '' }}">
+            <div class="card-body p-2">
+              <div class="row no-gutters">
+                <div class="col-lg-8">
+                  {{ $participant->track }}. {{ $participant->masterParticipant->name }}
+                  <br>&nbsp; &nbsp; <small>({{ $participant->masterParticipant->masterSchool->name }})</small>
+                </div>
+                <div class="col-lg-4 text-right">
+                  @auth
+                    <input type="text"
+                      class="form-control form-control-sm text-right input-mask-time"
+                      data-inputmask-alias="datetime"
+                      data-inputmask-inputformat="MM:ss.L"
+                      data-inputmask-placeholder="00:00.00"
+                      placeholder="00:00.00"
+                      value="{{ old('participants.' . $participant->id . '.point') ?? $participant->point_text }}"
+                      name="participants[{{ $participant->id }}][point]"
+                      >
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox"
+                        class="custom-control-input"
+                        id="sesi-{{ $eventSession->session }}-{{ $loop->iteration }}"
+                        value="1"
+                        name="participants[{{ $participant->id }}][dis]"
+                        @if (old('participants.' . $participant->id . '.dis'))
+                          checked="checked"
+                        @endif
+                        >
+                      <label class="custom-control-label my-0 pt-1" for="sesi-{{ $eventSession->session }}-{{ $loop->iteration }}"> diskualifikasi?</label>
+                    </div>
+                  @endauth
+                </div>
+              </div>
+            </div>
+          </div>
+          {{-- <div class="card mb-4 py-3 border-left-success">
+            <div class="card-body">
+              .border-left-success
+            </div>
+          </div>
+          <div class="card mb-4 py-3 border-left-info">
+            <div class="card-body">
+              .border-left-info
+            </div>
+          </div>
+          <div class="card mb-4 py-3 border-left-warning">
+            <div class="card-body">
+              .border-left-warning
+            </div>
+          </div>
+          <div class="card mb-4 py-3 border-left-danger">
+            <div class="card-body">
+              .border-left-danger
+            </div>
+          </div> --}}
+        @endforeach
+        @auth
+          <p class="text-right my-2"><button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-save"></i> Submit</button></p>
+        {{ html()->form()->close() }}
+        @endauth
+      @endif
+    @endif
+  @endif
+@endif

@@ -1,0 +1,21 @@
+<div class="form-group row">
+  <div class="{{ $divClasses ? $divClasses : 'col offset-sm-3' }}">
+    @php
+      $defaultInputAttributes = [];
+      if (!empty($inputAttributes)) {
+          $defaultInputAttributes = $inputAttributes;
+      }
+      $inputAttributes = array_merge($defaultInputAttributes, [
+          'class' => 'custom-control-input',
+          'id' => \Illuminate\Support\Str::slug($name),
+      ]);
+    @endphp
+    <div class="custom-control custom-checkbox">
+      {{-- {{ Form::checkbox($name, $value, $checked, $inputAttributes) }} --}}
+      {{ html()->checkbox($name, $checked, $value)->attributes($inputAttributes) }}
+
+      {{-- {{ Form::label($inputAttributes['id'] ?? '', ucwords($display), ['class' => 'custom-control-label']) }} --}}
+      {{ html()->label(ucwords($label), $inputAttributes['id'] ?? '')->attributes(['class' => 'custom-control-label']) }}
+    </div>
+  </div>
+</div>
