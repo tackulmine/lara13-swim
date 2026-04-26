@@ -62,7 +62,7 @@
 
     /** Define the margins of your page **/
     @page {
-      margin: 230px 50px 70px 50px;
+      margin: 230px 50px 80px 50px;
     }
 
     header {
@@ -77,7 +77,7 @@
 
     footer {
       position: fixed;
-      bottom: -40px;
+      bottom: -50px;
       left: 0px;
       right: 0px;
       height: 50px;
@@ -214,7 +214,7 @@
           <td></td>
         </tr>
       @endfor --}}
-        <table class="table table-sm table-borderless mb-1">
+        <table class="table table-sm table-borderless mb-2s">
           {{-- <thead> --}}
           <tr>
             <th colspan="6">{{ __('Seri') }} {{ $eventSession->session }}</th>
