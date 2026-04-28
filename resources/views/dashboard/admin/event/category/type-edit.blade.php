@@ -7,12 +7,13 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    {!! Form::open([
+    {{-- {!! Form::open([
         'route' => [$baseRouteName . 'update-type', [$event, $masterMatchCategory]],
         'class' => 'form-horizontal',
         'files' => true,
         'method' => 'put',
-    ]) !!}
+    ]) !!} --}}
+    {{ html()->form('PUT')->route($baseRouteName . 'update-type', [$event, $masterMatchCategory])->attributes(['class' => 'form-horizontal'])->open() }}
     {{-- {{ Form::hidden('id', $id) }} --}}
     <div class="card-body">
 

@@ -6,9 +6,9 @@ use App\Http\Controllers\Dashboard\Admin\BaseController as ParentController;
 
 class BaseController extends ParentController
 {
-    protected $parentViewPath = 'dashboard.admin.';
+    // protected $parentViewPath = 'dashboard.admin.';
 
-    protected $parentRouteName = 'dashboard.admin.';
+    // protected $parentRouteName = 'dashboard.admin.';
 
     public function __construct()
     {

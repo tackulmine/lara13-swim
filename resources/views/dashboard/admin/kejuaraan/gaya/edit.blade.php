@@ -16,7 +16,7 @@
         'autocomplete' => 'off',
     ]) !!}
     {{ Form::hidden('id', $id) }} --}}
-    {{ html()->form('PUT', route($baseRouteName . 'update', [$id]))->class('needs-validation')->novalidate()->attribute('autocomplete', 'off')->open() }}
+    {{ html()->form('PUT')->route($baseRouteName . 'update', [$id])->class('needs-validation')->novalidate()->attribute('autocomplete', 'off')->open() }}
     {{ html()->hidden('id', $id) }}
     <div class="card-body">
 

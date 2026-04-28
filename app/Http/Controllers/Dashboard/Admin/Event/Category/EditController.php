@@ -9,8 +9,8 @@ class EditController extends BaseController
 {
     public function __invoke(Event $event)
     {
-        $categories = MasterMatchCategory::orderBy('name')
-            ->pluck('name', 'id');
+        $categories = MasterMatchCategory::orderBy('name', 'asc')
+            ->pluck('name', 'id')->toArray();
 
         $this->globalData = [
             'pageTitle' => "Edit {$this->moduleName} {$event->name}",

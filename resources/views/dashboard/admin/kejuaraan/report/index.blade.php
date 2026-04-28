@@ -18,7 +18,7 @@
             'novalidate' => true,
             'method' => 'get',
         ]) !!} --}}
-        {{ html()->form('GET', route($baseRouteName . 'index'))->class('needs-validation')->novalidate()->open() }}
+        {{ html()->form('GET')->route($baseRouteName . 'index')->class('needs-validation')->novalidate()->open() }}
 
         {{-- {{ Form::bs4HorSelect(
             'user_id',
@@ -52,7 +52,13 @@
                   'data-target-url' => route('dashboard.admin.kejuaraan.report.ajax-get-gaya'),
                   'data-target' => '#master_championship_gaya_id',
               ]) !!} --}}
-              {{ html()->text('periode_start', request('periode_start') ?? now()->subYear()->startOfYear()->format('m-Y'))->class('form-control')->attribute('required', 'true')->attribute('autocomplete', 'off')->attribute('data-target-url', route('dashboard.admin.kejuaraan.report.ajax-get-gaya'))->attribute('data-target', '#master_championship_gaya_id')->open() }}
+              <x-forms.bs4.horizontal.text name="periode_start" :value="request('periode_start') ?? now()->subYear()->startOfYear()->format('m-Y')" :input-attributes="[
+                  'class' => 'form-control',
+                  'required' => 'true',
+                  'autocomplete' => 'off',
+                  'data-target-url' => route('dashboard.admin.kejuaraan.report.ajax-get-gaya'),
+                  'data-target' => '#master_championship_gaya_id',
+              ]" />
               <div class="input-group-append"><span class="input-group-text">sampai</span></div>
               {{-- {!! Form::text('periode_end', request('periode_end') ?? now()->subYear()->endOfYear()->format('m-Y'), [
                   'class' => 'form-control',
@@ -61,7 +67,13 @@
                   'data-target-url' => route('dashboard.admin.kejuaraan.report.ajax-get-gaya'),
                   'data-target' => '#master_championship_gaya_id',
               ]) !!} --}}
-              {{ html()->text('periode_end', request('periode_end') ?? now()->subYear()->endOfYear()->format('m-Y'))->class('form-control')->attribute('required', 'true')->attribute('autocomplete', 'off')->attribute('data-target-url', route('dashboard.admin.kejuaraan.report.ajax-get-gaya'))->attribute('data-target', '#master_championship_gaya_id')->open() }}
+              <x-forms.bs4.horizontal.text name="periode_end" :value="request('periode_end') ?? now()->subYear()->endOfYear()->format('m-Y')" :input-attributes="[
+                  'class' => 'form-control',
+                  'required' => 'true',
+                  'autocomplete' => 'off',
+                  'data-target-url' => route('dashboard.admin.kejuaraan.report.ajax-get-gaya'),
+                  'data-target' => '#master_championship_gaya_id',
+              ]" />
             </div>
           </div>
         </div>

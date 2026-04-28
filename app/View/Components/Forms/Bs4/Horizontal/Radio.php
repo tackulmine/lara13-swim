@@ -11,10 +11,14 @@ class Radio extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public string $name,
+        public ?string $value = null,
+        public bool|int $checked = false,
+        public ?string $label = null,
+        public array $inputAttributes = [],
+        public ?string $divClasses = null,
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

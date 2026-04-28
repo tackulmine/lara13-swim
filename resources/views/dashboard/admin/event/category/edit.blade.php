@@ -7,13 +7,18 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    {!! Form::open([
+    {{-- {!! Form::open([
         'route' => [$baseRouteName . 'update', $id],
         'class' => 'form-horizontal',
         'files' => true,
         'method' => 'put',
     ]) !!}
-    {{ Form::hidden('id', $id) }}
+    {{ Form::hidden('id', $id) }} --}}
+    {{ html()->form('PUT')->route($baseRouteName . 'update', $id)->attributes([
+            'class' => 'form-horizontal',
+            'enctype' => 'multipart/form-data',
+        ])->open() }}
+    {{ html()->hidden('id', $id) }}
     <div class="card-body">
 
       @include('layouts.partials._notif')

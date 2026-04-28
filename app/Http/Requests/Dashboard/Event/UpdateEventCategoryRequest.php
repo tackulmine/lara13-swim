@@ -14,11 +14,11 @@ class UpdateEventCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'categories' => 'required|array',
+            'categories' => 'sometimes|nullable|array',
         ];
     }
 
-    public function messages()
+    public function attributes()
     {
         return [
             'categories' => 'Kategori Kompetisi',

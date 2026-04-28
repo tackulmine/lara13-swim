@@ -11,10 +11,12 @@ class Plain extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public string $name,
+        public ?string $value = null,
+        public array $inputAttributes = [],
+        public ?string $label = null,
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

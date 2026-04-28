@@ -13,8 +13,8 @@
         @php
           $rid = $labelName . '_' . $i;
           $attributes = [
-            'class' => 'custom-control-input',
-            'id' => $rid,
+              'class' => 'custom-control-input',
+              'id' => $rid,
           ];
           if (isset($inputAttributes) && count($inputAttributes)) {
               $attributes = array_merge(

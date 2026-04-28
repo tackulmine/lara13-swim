@@ -3,7 +3,7 @@
   <div class="modal-dialog{{ !empty($modalSize) ? ' ' . $modalSize : '' }}" role="document">
     @if (!empty($modalFormUrl))
       {{-- {!! Form::open(array_merge(['url' => $modalFormUrl], $modalFormAttributes)) !!} --}}
-      {{ html()->form('POST', $modalFormUrl)->attributes($modalFormAttributes)->open() }}
+      {{ html()->form($modalFormMethod ?? 'POST', $modalFormUrl)->attributes($modalFormAttributes)->open() }}
     @endif
     <div class="modal-content">
       <div class="modal-header">

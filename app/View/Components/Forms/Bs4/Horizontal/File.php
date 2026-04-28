@@ -13,10 +13,10 @@ class File extends Component
      */
     public function __construct(
         public string $name,
-        public $label = null,
+        public ?string $label = null,
         public array $inputAttributes = [],
-        public $fileLabel = null,
-        public $oldPreviewFileHtml = null,
+        public ?string $fileLabel = null,
+        public ?string $oldPreviewFileHtml = null,
     ) {}
 
     /**

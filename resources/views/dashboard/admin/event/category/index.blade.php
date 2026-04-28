@@ -50,15 +50,17 @@
             @endforelse
           </tbody>
         </table>
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => [$baseRouteName . 'set-ordering', $event->id],
             'id' => 'reorder-form',
             // 'class' => 'form-horizontal',
             'class' => 'form-disabled-submit',
             // 'files' => true,
             'method' => 'put',
-        ]) !!}
-        {{ Form::hidden('items_id') }}
+        ]) !!} --}}
+        {{-- {{ Form::hidden('items_id') }} --}}
+        {{ html()->form('PUT')->route($baseRouteName . 'set-ordering', $event->id)->id('reorder-form')->class('form-disabled-submit')->open() }}
+        {{ html()->hidden('items_id', old('items_id', isset($categories) ? $categories->pluck('pivot.master_match_category_id')->implode(',') : '')) }}
         <div class="text-center">
           <button type="submit" class="btn btn-outline-primary mb-2 mb-lg-0">
             <i class="fas fa-save"></i>
@@ -76,7 +78,8 @@
       'modalSize' => '',
       'modalTitle' => '',
       'modalFormUrl' => '#!',
-      'modalFormAttributes' => ['method' => 'put', 'class' => 'form-disabled-submit'],
+      'modalFormMethod' => 'PUT',
+      'modalFormAttributes' => ['class' => 'form-disabled-submit'],
   ])
     @method('put')
   @endcomponent

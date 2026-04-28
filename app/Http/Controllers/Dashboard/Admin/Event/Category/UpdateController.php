@@ -9,7 +9,7 @@ class UpdateController extends BaseController
 {
     public function __invoke(UpdateEventCategoryRequest $request, Event $event)
     {
-        if (! $event->categories()->sync($request->input('categories'))) {
+        if (! $event->categories()->sync($request->input('categories', []))) {
             return back()
                 ->withInput()
                 ->withErrors(["{$this->moduleName} '$event->name' GAGAL diupdate!"]);

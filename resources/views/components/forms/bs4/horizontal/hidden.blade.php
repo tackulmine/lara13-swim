@@ -1,3 +1,3 @@
 <div>
-    <!-- Well begun is half done. - Aristotle -->
+  {{ html()->hidden($name, $value) }}
 </div>

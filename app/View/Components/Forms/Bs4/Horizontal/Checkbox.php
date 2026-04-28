@@ -13,11 +13,11 @@ class Checkbox extends Component
      */
     public function __construct(
         public string $name,
-        public $value = null,
-        public $checked = false,
-        public $label = null,
+        public ?string $value = null,
+        public bool|int $checked = false,
+        public ?string $label = null,
         public array $inputAttributes = [],
-        public $divClasses = '',
+        public ?string $divClasses = null,
     ) {}
 
     /**

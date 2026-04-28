@@ -18,7 +18,7 @@ class UpdateEventTypeRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function attributes()
     {
         return [
             'types' => __('Gaya').' Kompetisi',

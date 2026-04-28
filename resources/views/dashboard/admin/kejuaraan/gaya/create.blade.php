@@ -16,7 +16,7 @@
         'files' => true,
         'autocomplete' => 'off',
     ]) !!} --}}
-    {{ html()->form('POST', route($baseRouteName . 'store'))->class('needs-validation')->novalidate()->attribute('autocomplete', 'off')->open() }}
+    {{ html()->form('POST')->route($baseRouteName . 'store')->class('needs-validation')->novalidate()->attribute('autocomplete', 'off')->open() }}
     <div class="card-body">
 
       @include('layouts.partials._notif')

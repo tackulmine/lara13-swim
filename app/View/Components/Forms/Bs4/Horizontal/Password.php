@@ -11,10 +11,12 @@ class Password extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public string $name,
+        public array $inputAttributes = [],
+        public ?string $label = null,
+        public string $helpText = 'default',
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

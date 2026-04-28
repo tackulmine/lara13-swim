@@ -13,12 +13,12 @@ class Text extends Component
      */
     public function __construct(
         public string $name,
-        public $value = null,
+        public ?string $value = null,
         public array $inputAttributes = [],
-        public $label = null,
-        public $formGroupClasses = null,
-        public $formLabelClasses = null,
-        public $formHelpText = null,
+        public ?string $label = null,
+        public ?string $formGroupClasses = null,
+        public ?string $formLabelClasses = null,
+        public ?string $formHelpText = null,
     ) {}
 
     /**

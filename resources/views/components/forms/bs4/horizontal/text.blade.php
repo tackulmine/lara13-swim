@@ -5,7 +5,7 @@
 
   <div class="col">
     {{-- {{ Form::text($name, $value, array_merge(['class' => 'form-control'], $attributes)) }} --}}
-    {{ html()->text($name, $value)->attributes(array_merge(['class' => 'form-control'], $inputAttributes)) }}
+    {{ html()->text($name, $value)->attributes(array_merge(['class' => 'form-control'], $inputAttributes ?? [])) }}
     @if ($formHelpText)
       <small class="form-text text-muted">{{ $formHelpText }}</small>
     @endif

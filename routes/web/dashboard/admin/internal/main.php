@@ -10,7 +10,7 @@ use App\Http\Controllers\Dashboard\Admin\MemberLimitController;
 use App\Http\Controllers\Dashboard\Admin\StaffController;
 use Illuminate\Support\Facades\Route;
 
-Route::namespace('Member')->prefix('member')->as('member.')->group(function () {
+Route::prefix('member')->as('member.')->group(function () {
     Route::middleware('role:coach')->group(function () {
         Route::get('create', [Member\CreateController::class])->name('create');
         Route::post('store', [Member\StoreController::class])->name('store');
@@ -65,7 +65,7 @@ Route::middleware('role:coach')->group(function () {
     });
     Route::resource('member-gaya-limit', MemberGayaLimitController::class)->except(['show']);
 
-    Route::namespace('MemberInvitation')->prefix('member-invitation')->as('member-invitation.')->group(function () {
+    Route::prefix('member-invitation')->as('member-invitation.')->group(function () {
         Route::get('/', [MemberInvitation\IndexController::class])->name('index');
         Route::get('{invitation}/edit', [MemberInvitation\EditController::class])->name('edit');
         Route::put('{invitation}', [MemberInvitation\UpdateController::class])->name('update');
