@@ -12,9 +12,13 @@ class SetOrderingController extends BaseController
     public function __invoke(Request $request, Event $event)
     {
         $validator = Validator::make($request->all(), [
-            'item_id' => 'sometimes|nullable|integer|exists:event_registration_numbers,id',
-            'order' => 'sometimes|nullable|integer|min:1',
-            'items_id' => 'sometimes|nullable|string',
+            // 'item_id' => 'sometimes|nullable|integer|exists:event_registration_numbers,id',
+            // 'order' => 'sometimes|nullable|integer|min:1',
+            'items_id' => 'required|string',
+        ], [], [
+            // 'item_id' => 'Item Kategori Kompetisi',
+            // 'order' => 'Urutan',
+            'items_id' => 'Item '.$this->moduleName,
         ]);
 
         if ($validator->fails()) {

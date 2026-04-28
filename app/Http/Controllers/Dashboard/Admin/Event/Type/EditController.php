@@ -9,7 +9,7 @@ class EditController extends BaseController
 {
     public function __invoke(Event $event)
     {
-        $types = MasterMatchType::orderBy('name')
+        $types = MasterMatchType::orderBy('name', 'asc')
             ->pluck('name', 'id');
 
         $this->globalData = [

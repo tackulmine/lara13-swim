@@ -1,4 +1,4 @@
-{{ Form::bs4HorCheckboxes(
+{{-- {{ Form::bs4HorCheckboxes(
     'types[]',
     $types,
     old(
@@ -8,4 +8,6 @@
     'Pilih Tipe',
     null,
     'newline',
-) }}
+) }} --}}
+<x-forms.bs4.horizontal.checkboxes name="types[]" :checkboxes="$types" :values="old('types', optional($event->types)->pluck('id')->toArray())" :label="'Pilih ' . __('Tipe')" :input-attributes="[]"
+  separator="newline" />

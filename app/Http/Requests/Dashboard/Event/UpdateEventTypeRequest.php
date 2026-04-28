@@ -14,7 +14,7 @@ class UpdateEventTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'types' => 'required|array',
+            'types' => 'sometimes|nullable|array',
         ];
     }
 

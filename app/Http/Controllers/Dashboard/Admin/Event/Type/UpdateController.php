@@ -9,7 +9,7 @@ class UpdateController extends BaseController
 {
     public function __invoke(UpdateEventTypeRequest $request, Event $event)
     {
-        if (! $event->types()->sync($request->input('types'))) {
+        if (! $event->types()->sync($request->input('types', []))) {
             return back()
                 ->withInput()
                 ->withErrors(["{$this->moduleName} '$event->name' GAGAL diupdate!"]);
