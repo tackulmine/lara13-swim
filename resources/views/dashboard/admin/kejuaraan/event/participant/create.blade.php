@@ -12,13 +12,14 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => [$baseRouteName . 'store', $event],
             'class' => 'needs-validation',
             'novalidate' => true,
             // 'files' => true,
             'autocomplete' => 'off',
-        ]) !!}
+        ]) !!} --}}
+        {{ html()->form('POST', route($baseRouteName . 'store', [$event]))->class('needs-validation')->novalidate()->attribute('autocomplete', 'off')->open() }}
         <div class="card-body">
 
           @include('layouts.partials._notif')

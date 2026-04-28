@@ -12,14 +12,15 @@
     </div>
     <div class="card-body">
       <div class="mb-4">
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => $baseRouteName . 'index',
             'class' => 'needs-validation',
             'novalidate' => true,
             'method' => 'get',
-        ]) !!}
+        ]) !!} --}}
+        {{ html()->form('GET', route($baseRouteName . 'index'))->class('needs-validation')->novalidate()->open() }}
 
-        {{ Form::bs4HorSelect(
+        {{-- {{ Form::bs4HorSelect(
             'user_id',
             $memberOptions,
             request('user_id') ?? '',
@@ -30,32 +31,41 @@
                 'data-target' => '#master_championship_gaya_id',
             ],
             __('Nama Lengkap Atlet'),
-        ) }}
+        ) }} --}}
+        <x-forms.bs4.horizontal.select name="user_id" :options="$memberOptions" :value="request('user_id') ?? ''" :input-attributes="[
+            'class' => 'form-control',
+            'required' => 'true',
+            'data-target-url' => route('dashboard.admin.kejuaraan.report.ajax-get-gaya'),
+            'data-target' => '#master_championship_gaya_id',
+        ]"
+          label="Nama Lengkap Atlet" />
         <div class="form-group row">
           <label for="" class="col-sm-3 col-form-label">Periode</label>
           <div class="col-lg-5">
             <div class="input-group input-daterange" data-provide="datepicker" data-date-format="mm-yyyy"
               data-date-view-mode="months" data-date-min-view-mode="months" data-date-end-date="0d"
               data-date-autoClose="true" data-date-language="id" autocomplete="false">
-              {!! Form::text('periode_start', request('periode_start') ?? now()->subYear()->startOfYear()->format('m-Y'), [
+              {{-- {!! Form::text('periode_start', request('periode_start') ?? now()->subYear()->startOfYear()->format('m-Y'), [
                   'class' => 'form-control',
                   'required' => 'required',
                   'autocomplete' => 'off',
                   'data-target-url' => route('dashboard.admin.kejuaraan.report.ajax-get-gaya'),
                   'data-target' => '#master_championship_gaya_id',
-              ]) !!}
+              ]) !!} --}}
+              {{ html()->text('periode_start', request('periode_start') ?? now()->subYear()->startOfYear()->format('m-Y'))->class('form-control')->attribute('required', 'true')->attribute('autocomplete', 'off')->attribute('data-target-url', route('dashboard.admin.kejuaraan.report.ajax-get-gaya'))->attribute('data-target', '#master_championship_gaya_id')->open() }}
               <div class="input-group-append"><span class="input-group-text">sampai</span></div>
-              {!! Form::text('periode_end', request('periode_end') ?? now()->subYear()->endOfYear()->format('m-Y'), [
+              {{-- {!! Form::text('periode_end', request('periode_end') ?? now()->subYear()->endOfYear()->format('m-Y'), [
                   'class' => 'form-control',
                   'required' => 'required',
                   'autocomplete' => 'off',
                   'data-target-url' => route('dashboard.admin.kejuaraan.report.ajax-get-gaya'),
                   'data-target' => '#master_championship_gaya_id',
-              ]) !!}
+              ]) !!} --}}
+              {{ html()->text('periode_end', request('periode_end') ?? now()->subYear()->endOfYear()->format('m-Y'))->class('form-control')->attribute('required', 'true')->attribute('autocomplete', 'off')->attribute('data-target-url', route('dashboard.admin.kejuaraan.report.ajax-get-gaya'))->attribute('data-target', '#master_championship_gaya_id')->open() }}
             </div>
           </div>
         </div>
-        {{ Form::bs4HorSelect(
+        {{-- {{ Form::bs4HorSelect(
             'master_championship_gaya_id',
             $masterGayaOptions,
             request('master_championship_gaya_id') ?? '',
@@ -65,7 +75,9 @@
                 // 'required' => 'required',
             ],
             __('Gaya'),
-        ) }}
+        ) }} --}}
+        <x-forms.bs4.horizontal.select name="master_championship_gaya_id" :options="$masterGayaOptions" :value="request('master_championship_gaya_id') ?? ''"
+          :input-attributes="['id' => 'master_championship_gaya_id', 'class' => 'form-control']" label="Gaya" />
 
         <div class="form-group row">
           <div class="col-sm-10 offset-sm-3">
