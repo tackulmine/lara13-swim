@@ -7,11 +7,11 @@ use App\Models\MasterSchool;
 
 class BaseController extends ParentController
 {
-    protected $schoolOptions;
+    protected object|array $schoolOptions;
 
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {
