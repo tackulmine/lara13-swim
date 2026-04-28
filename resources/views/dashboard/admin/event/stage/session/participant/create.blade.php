@@ -10,11 +10,12 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => [$baseRouteName . 'store', $event->id, $eventStage->id, $eventSession->id],
             'class' => 'form-horizontal',
             'autocomplete' => 'off',
-        ]) !!}
+        ]) !!} --}}
+        {{ html()->form('POST')->route($baseRouteName . 'store', [$event->id, $eventStage->id, $eventSession->id])->class('form-horizontal')->attribute('autocomplete', 'off')->open() }}
         <div class="card-body">
 
           @include('layouts.partials._notif')

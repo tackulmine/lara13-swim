@@ -6,9 +6,9 @@ use App\Http\Controllers\Dashboard\Admin\BaseController as ParentController;
 
 class BaseController extends ParentController
 {
-    protected $customMessages;
+    protected array $customMessages = [];
 
-    protected $customAttributes;
+    protected array $customAttributes = [];
 
     public function __construct()
     {
@@ -29,7 +29,6 @@ class BaseController extends ParentController
 
     protected function generateFormAttributes()
     {
-        $this->customMessages = [];
         $this->customAttributes = [
             // 'name'         => 'Nama Acara',
         ];

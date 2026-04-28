@@ -10,12 +10,14 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => [$baseRouteName . 'update', $event->id, $eventStage->id, $id],
             'class' => 'form-horizontal',
             'method' => 'put',
         ]) !!}
-        {{ Form::hidden('id', $id) }}
+        {{ Form::hidden('id', $id) }} --}}
+        {{ html()->form('PUT')->route($baseRouteName . 'update', [$event->id, $eventStage->id, $id])->class('form-horizontal')->open() }}
+        {{ html()->hidden('id', $id) }}
         <div class="card-body">
 
           @include('layouts.partials._notif')

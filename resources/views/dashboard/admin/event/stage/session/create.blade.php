@@ -11,10 +11,11 @@
         <!-- /.box-header -->
         <!-- form start -->
 
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => [$baseRouteName . 'store', $event->id, $eventStage->id],
             'class' => 'form-horizontal',
-        ]) !!}
+        ]) !!} --}}
+        {{ html()->form('POST')->route($baseRouteName . 'store', [$event->id, $eventStage->id])->class('form-horizontal')->open() }}
         <div class="card-body">
 
           @include('layouts.partials._notif')

@@ -13,11 +13,11 @@ class Radios extends Component
      */
     public function __construct(
         public string $name,
-        public array $radios = [],
+        public object|array $radios = [],
         public ?string $value = null,
         public ?string $label = null,
         public array $inputAttributes = [],
-        public string $separator = 'inline',
+        public ?string $separator = 'inline',
         public ?string $formGroupClasses = null,
         public ?string $formLabelClasses = null,
         public ?string $formItemClasses = null,

@@ -9,13 +9,15 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => [$baseRouteName . 'update', $event->id, $eventStage->id, $eventSession->id, $id],
             'class' => 'form-horizontal',
             'method' => 'put',
             'autocomplete' => 'off',
         ]) !!}
-        {{ Form::hidden('id', $id) }}
+        {{ Form::hidden('id', $id) }} --}}
+        {{ html()->form('PUT')->route($baseRouteName . 'update', [$event->id, $eventStage->id, $eventSession->id, $id])->class('form-horizontal')->attribute('autocomplete', 'off')->open() }}
+        {{ html()->hidden('id', $id) }}
         <div class="card-body">
 
           @include('layouts.partials._notif')

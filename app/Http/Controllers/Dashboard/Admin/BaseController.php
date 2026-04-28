@@ -7,19 +7,19 @@ use Jenssegers\Agent\Facades\Agent;
 
 class BaseController extends Controller
 {
-    protected $globalData = [];
+    protected array $globalData = [];
 
-    protected $moduleName = '';
+    protected string $moduleName = '';
 
-    protected $baseViewPath = '';
+    protected string $baseViewPath = '';
 
-    protected $baseRouteName = '';
+    protected string $baseRouteName = '';
 
-    protected $parentModuleName = 'Dashboard';
+    protected string $parentModuleName = 'Dashboard';
 
-    protected $parentViewPath = 'dashboard.admin.';
+    protected string $parentViewPath = 'dashboard.admin.';
 
-    protected $parentRouteName = 'dashboard.admin.';
+    protected string $parentRouteName = 'dashboard.admin.';
 
     public function __construct()
     {

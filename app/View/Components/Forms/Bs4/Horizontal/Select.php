@@ -13,7 +13,7 @@ class Select extends Component
      */
     public function __construct(
         public string $name,
-        public array|object $options = [],
+        public object|array $options = [],
         public ?string $value = null,
         public ?string $label = null,
         public array $inputAttributes = [],

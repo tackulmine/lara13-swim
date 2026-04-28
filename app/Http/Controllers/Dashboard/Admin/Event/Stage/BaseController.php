@@ -8,13 +8,13 @@ use App\Models\MasterMatchType;
 
 class BaseController extends ParentController
 {
-    protected $typeOptions;
+    protected object $typeOptions;
 
-    protected $categoryOptions;
+    protected object $categoryOptions;
 
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {
