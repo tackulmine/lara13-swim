@@ -28,7 +28,8 @@ class UpdateController extends BaseController
         $validatedData = $validatedData + $request->all();
 
         if ($event->masterChampionship->name != $request->name) {
-            $masterChampionship = MasterChampionship::find($event->master_championship_id)
+            $masterChampionship = MasterChampionship::findOrFail($event->master_championship_id);
+            $masterChampionship
                 ->update([
                     'name' => $request->name,
                 ]);

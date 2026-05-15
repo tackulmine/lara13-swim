@@ -39,12 +39,6 @@ class Event extends BaseModel
         'updated_by' => 'integer',
     ];
 
-    protected $dates = [
-        'start_date',
-        'end_date',
-        'reg_end_date',
-    ];
-
     protected $fillable = [
         'slug',
         'name',

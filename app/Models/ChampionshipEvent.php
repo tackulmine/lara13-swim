@@ -14,11 +14,8 @@ class ChampionshipEvent extends BaseModel
         'created_by' => 'integer',
         'updated_by' => 'integer',
         'deleted_by' => 'integer',
-    ];
-
-    protected $dates = [
-        'start_date',
-        'end_date',
+        'start_date' => 'date',
+        'end_date' => 'date',
     ];
 
     protected $fillable = [

@@ -6,9 +6,17 @@ use App\Observers\MyLaraCedObserver;
 
 trait MyLaraCedTrait
 {
-    public static function bootedMyLaraCedTrait()
+    /**
+     * This method is automatically called by Laravel when the model boots.
+     */
+    public static function bootMyLaraCedTrait()
     {
-        static::observe(new MyLaraCedObserver);
+        // Menunggu model selesai melalui siklus booting utama
+        static::whenBooted(
+            function () {
+                static::observe(MyLaraCedObserver::class);
+            }
+        );
     }
 
     /**
