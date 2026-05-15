@@ -6,7 +6,7 @@ use App\Http\Controllers\Dashboard\Admin\BaseController as ParentController;
 
 class BaseController extends ParentController
 {
-    protected array $participantOptions;
+    protected array|object $participantOptions;
 
     protected array $customMessages;
 

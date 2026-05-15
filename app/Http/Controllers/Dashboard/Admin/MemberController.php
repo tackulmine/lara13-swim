@@ -21,11 +21,11 @@ class MemberController extends BaseController
 
     protected array $customAttributes;
 
-    protected array $relegionOptions;
+    protected array|object $relegionOptions;
 
-    protected array $genderOptions;
+    protected array|object $genderOptions;
 
-    protected array $educationOptions;
+    protected array|object $educationOptions;
 
     public function __construct()
     {

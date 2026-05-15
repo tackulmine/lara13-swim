@@ -12,11 +12,11 @@ class BaseController extends ParentController
 
     protected array $customAttributes;
 
-    protected array $genderOptions;
+    protected array|object $genderOptions;
 
-    protected array $relegionOptions;
+    protected array|object $relegionOptions;
 
-    protected array $educationOptions;
+    protected array|object $educationOptions;
 
     public function __construct()
     {

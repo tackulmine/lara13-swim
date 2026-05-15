@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
 
 class EventSessionController extends BaseController
 {
-    protected array $stageOptions;
+    protected array|object $stageOptions;
 
     protected array $customMessages;
 

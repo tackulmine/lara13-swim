@@ -8,9 +8,9 @@ use App\Models\User;
 
 class BaseController extends ParentController
 {
-    protected array $participantOptions;
+    protected array|object $participantOptions;
 
-    protected array $gayaOptions;
+    protected array|object $gayaOptions;
 
     protected array $customMessages;
 

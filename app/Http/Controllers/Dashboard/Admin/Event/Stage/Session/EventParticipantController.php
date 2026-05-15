@@ -15,7 +15,7 @@ use Illuminate\Validation\Rule;
 
 class EventParticipantController extends BaseController
 {
-    protected array $participantOptions;
+    protected array|object $participantOptions;
 
     protected array $customMessages;
 

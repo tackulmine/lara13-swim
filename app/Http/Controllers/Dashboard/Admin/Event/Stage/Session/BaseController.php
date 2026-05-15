@@ -7,7 +7,7 @@ use App\Models\EventStage;
 
 class BaseController extends ParentController
 {
-    protected array $stageOptions;
+    protected array|object $stageOptions;
 
     protected array $customMessages;
 
