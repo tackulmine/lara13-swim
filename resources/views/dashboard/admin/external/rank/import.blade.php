@@ -7,11 +7,15 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    {!! Form::open([
+    {{-- {!! Form::open([
         'route' => [$baseRouteName . 'import-process'],
         'class' => 'form-horizontal form-disabled-submit',
         'files' => true,
-    ]) !!}
+    ]) !!} --}}
+    {{ html()->form('POST')->route($baseRouteName . 'import-process')->attributes([
+            'class' => 'form-horizontal form-disabled-submit',
+            'enctype' => 'multipart/form-data',
+        ])->open() }}
     <div class="card-body">
 
       @include('layouts.partials._notif')

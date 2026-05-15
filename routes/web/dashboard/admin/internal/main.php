@@ -12,20 +12,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('member')->as('member.')->group(function () {
     Route::middleware('role:coach')->group(function () {
-        Route::get('create', [Member\CreateController::class])->name('create');
-        Route::post('store', [Member\StoreController::class])->name('store');
-        Route::delete('{member}/destroy', [Member\DestroyController::class])->name('destroy');
+        Route::get('create', Member\CreateController::class)->name('create');
+        Route::post('store', Member\StoreController::class)->name('store');
+        Route::delete('{member}/destroy', Member\DestroyController::class)->name('destroy');
 
-        Route::delete('destroy-batch', [Member\DestroyBatchController::class])->name('destroy-batch');
-        Route::put('restore-batch', [Member\RestoreBatchController::class])->name('restore-batch');
+        Route::delete('destroy-batch', Member\DestroyBatchController::class)->name('destroy-batch');
+        Route::put('restore-batch', Member\RestoreBatchController::class)->name('restore-batch');
     });
 
     Route::middleware('role:coach,member')->group(function () {
-        Route::get('/', [Member\IndexController::class])->name('index');
-        Route::get('{member}', [Member\ShowController::class])->name('show');
-        Route::get('{member}/edit', [Member\EditController::class])->name('edit');
-        Route::put('{member}', [Member\UpdateController::class])->name('update');
-        Route::get('{member}/print', [Member\PrintController::class])->name('print');
+        Route::get('/', Member\IndexController::class)->name('index');
+        Route::get('{member}', Member\ShowController::class)->name('show');
+        Route::get('{member}/edit', Member\EditController::class)->name('edit');
+        Route::put('{member}', Member\UpdateController::class)->name('update');
+        Route::get('{member}/print', Member\PrintController::class)->name('print');
     });
 });
 
@@ -66,11 +66,11 @@ Route::middleware('role:coach')->group(function () {
     Route::resource('member-gaya-limit', MemberGayaLimitController::class)->except(['show']);
 
     Route::prefix('member-invitation')->as('member-invitation.')->group(function () {
-        Route::get('/', [MemberInvitation\IndexController::class])->name('index');
-        Route::get('{invitation}/edit', [MemberInvitation\EditController::class])->name('edit');
-        Route::put('{invitation}', [MemberInvitation\UpdateController::class])->name('update');
-        Route::put('{invitation}/rollback', [MemberInvitation\RollbackController::class])->name('rollback');
-        Route::delete('destroy-batch', [MemberInvitation\DestroyBatchController::class])->name('destroy-batch');
-        Route::delete('{invitation}', [MemberInvitation\DestroyController::class])->name('destroy');
+        Route::get('/', MemberInvitation\IndexController::class)->name('index');
+        Route::get('{invitation}/edit', MemberInvitation\EditController::class)->name('edit');
+        Route::put('{invitation}', MemberInvitation\UpdateController::class)->name('update');
+        Route::put('{invitation}/rollback', MemberInvitation\RollbackController::class)->name('rollback');
+        Route::delete('destroy-batch', MemberInvitation\DestroyBatchController::class)->name('destroy-batch');
+        Route::delete('{invitation}', MemberInvitation\DestroyController::class)->name('destroy');
     });
 });
