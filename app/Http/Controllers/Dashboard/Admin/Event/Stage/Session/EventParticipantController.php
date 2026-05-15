@@ -15,11 +15,11 @@ use Illuminate\Validation\Rule;
 
 class EventParticipantController extends BaseController
 {
-    protected $participantOptions;
+    protected array $participantOptions;
 
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {
@@ -77,7 +77,7 @@ class EventParticipantController extends BaseController
         ]);
         // participants
         $eventSessionParticipants = $eventSession->eventSessionParticipants()
-        // ->withCount(['eventSessionParticipants'])
+            // ->withCount(['eventSessionParticipants'])
             ->orderBy('track', 'asc')
             ->get();
         $eventSessionParticipants->load([
@@ -288,7 +288,7 @@ class EventParticipantController extends BaseController
     ) {
         $eventSessionParticipant->load(['masterParticipant', 'masterParticipant.masterSchool']);
         $participantDetail = "{$eventSessionParticipant->masterParticipant->name} "
-        .'('.optional($eventSessionParticipant->masterParticipant->masterSchool)->name.')';
+            .'('.optional($eventSessionParticipant->masterParticipant->masterSchool)->name.')';
 
         $rules = [
             'track' => [

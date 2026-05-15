@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 
 class EventSessionParticipantController extends BaseController
 {
-    protected $baseParentRouteName;
+    protected string $baseParentRouteName;
 
     public function __construct()
     {

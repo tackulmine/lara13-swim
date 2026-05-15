@@ -14,9 +14,9 @@ use Illuminate\Support\Str;
 
 class StaffController extends BaseController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {

@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class MasterMatchCategoryController extends BaseController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {
@@ -221,7 +221,8 @@ class MasterMatchCategoryController extends BaseController
                 $matchCategory = MasterMatchCategory::find($id);
                 if (! empty($matchCategory)) {
                     // ignore if having other relations!
-                    if ($matchCategory->eventStages->count() > 0
+                    if (
+                        $matchCategory->eventStages->count() > 0
                         || $matchCategory->eventRegistrations->count() > 0
                         || $matchCategory->events->count() > 0
                         || $matchCategory->masterMatchTypes->count() > 0

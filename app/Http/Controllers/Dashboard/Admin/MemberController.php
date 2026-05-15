@@ -17,15 +17,15 @@ use Illuminate\Support\Str;
 
 class MemberController extends BaseController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
-    protected $relegionOptions;
+    protected array $relegionOptions;
 
-    protected $genderOptions;
+    protected array $genderOptions;
 
-    protected $educationOptions;
+    protected array $educationOptions;
 
     public function __construct()
     {

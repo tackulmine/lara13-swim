@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class MasterMatchTypeController extends BaseController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {
@@ -221,7 +221,8 @@ class MasterMatchTypeController extends BaseController
                 $matchType = MasterMatchType::find($id);
                 if (! empty($matchType)) {
                     // ignore if having other relations!
-                    if ($matchType->eventStages->count() > 0
+                    if (
+                        $matchType->eventStages->count() > 0
                         || $matchType->eventRegistrations->count() > 0
                         || $matchType->masterParticipants->count() > 0
                     ) {

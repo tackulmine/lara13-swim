@@ -8,13 +8,13 @@ use App\Models\User;
 
 class BaseController extends ParentController
 {
-    protected $participantOptions;
+    protected array $participantOptions;
 
-    protected $gayaOptions;
+    protected array $gayaOptions;
 
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {

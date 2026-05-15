@@ -8,15 +8,15 @@ use App\Models\MasterUserType;
 
 class BaseController extends ParentController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
-    protected $genderOptions;
+    protected array $genderOptions;
 
-    protected $relegionOptions;
+    protected array $relegionOptions;
 
-    protected $educationOptions;
+    protected array $educationOptions;
 
     public function __construct()
     {

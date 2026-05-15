@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class MasterSchoolController extends BaseController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {
@@ -187,7 +187,8 @@ class MasterSchoolController extends BaseController
                 $school = MasterSchool::find($id);
                 if (! empty($school)) {
                     // ignore if having other relations!
-                    if ($school->masterParticipants->count() > 0
+                    if (
+                        $school->masterParticipants->count() > 0
                         || $school->userEducations->count() > 0
                     ) {
                         continue;

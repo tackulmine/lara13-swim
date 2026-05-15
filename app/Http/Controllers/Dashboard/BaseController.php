@@ -6,19 +6,19 @@ use App\Http\Controllers\Controller;
 
 class BaseController extends Controller
 {
-    protected $globalData = [];
+    protected array $globalData = [];
 
-    protected $moduleName = '';
+    protected string $moduleName = '';
 
-    protected $baseViewPath = '';
+    protected string $baseViewPath = '';
 
-    protected $baseRouteName = '';
+    protected string $baseRouteName = '';
 
-    protected $parentModuleName = 'Dashboard';
+    protected string $parentModuleName = 'Dashboard';
 
-    protected $parentViewPath = 'dashboard.';
+    protected string $parentViewPath = 'dashboard.';
 
-    protected $parentRouteName = 'dashboard.';
+    protected string $parentRouteName = 'dashboard.';
 
     public function __construct()
     {

@@ -23,9 +23,9 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class OldEventController extends BaseController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {
@@ -54,7 +54,7 @@ class OldEventController extends BaseController
     public function index()
     {
         $events = Event::with(['eventStages', 'eventSessions', 'eventSessions.eventSessionParticipants'])
-        // ->withCount(['eventStages', 'eventSessions'])
+            // ->withCount(['eventStages', 'eventSessions'])
             ->orderBy('start_date', 'desc')
             ->get();
 

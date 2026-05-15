@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class GayaController extends BaseController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {

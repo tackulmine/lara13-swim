@@ -7,11 +7,11 @@ use App\Models\EventStage;
 
 class BaseController extends ParentController
 {
-    protected $stageOptions;
+    protected array $stageOptions;
 
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {

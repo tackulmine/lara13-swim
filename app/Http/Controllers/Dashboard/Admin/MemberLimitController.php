@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 class MemberLimitController extends BaseController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {
@@ -467,7 +467,8 @@ class MemberLimitController extends BaseController
 
     public function ajaxLimitGayaFromMember(Request $request)
     {
-        if (! $request->ajax()
+        if (
+            ! $request->ajax()
             || ! $request->filled('user_id')
         ) {
             return response()->json(['error' => 'Data not found!'], 404);

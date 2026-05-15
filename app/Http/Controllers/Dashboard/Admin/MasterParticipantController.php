@@ -15,9 +15,9 @@ class MasterParticipantController extends BaseController
 {
     public $schoolOptions;
 
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {

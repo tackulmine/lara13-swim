@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 class MemberGayaLimitController extends BaseController
 {
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {

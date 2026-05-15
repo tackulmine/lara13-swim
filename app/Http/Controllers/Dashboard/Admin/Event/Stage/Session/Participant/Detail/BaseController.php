@@ -6,11 +6,11 @@ use App\Http\Controllers\Dashboard\Admin\BaseController as ParentController;
 
 class BaseController extends ParentController
 {
-    protected $participantOptions;
+    protected array $participantOptions;
 
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {

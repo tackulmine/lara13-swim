@@ -13,11 +13,11 @@ use Illuminate\Validation\Rule;
 
 class EventSessionController extends BaseController
 {
-    protected $stageOptions;
+    protected array $stageOptions;
 
-    protected $customMessages;
+    protected array $customMessages;
 
-    protected $customAttributes;
+    protected array $customAttributes;
 
     public function __construct()
     {
@@ -66,7 +66,7 @@ class EventSessionController extends BaseController
             'eventSessionParticipants',
         ]);
         $eventSessions = $eventStage->eventSessions()
-        // ->withCount(['eventSessions'])
+            // ->withCount(['eventSessions'])
             ->orderBy('session', 'asc')
             ->get();
         $eventSessions->load([

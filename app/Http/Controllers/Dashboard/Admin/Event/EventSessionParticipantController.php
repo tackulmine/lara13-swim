@@ -10,9 +10,9 @@ use Illuminate\Http\Response;
 
 class EventSessionParticipantController extends BaseController
 {
-    public $participantOptions;
+    public array $participantOptions;
 
-    protected $baseParentRouteName;
+    protected string $baseParentRouteName;
 
     public function __construct()
     {
