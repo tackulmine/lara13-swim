@@ -7,12 +7,17 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    {!! Form::open([
+    {{-- {!! Form::open([
         'route' => [$baseRouteName . 'update', $id],
         'class' => 'form-horizontal',
         'files' => true,
         'method' => 'put',
-    ]) !!}
+    ]) !!} --}}
+    {{ html()->form('PUT')->route($baseRouteName . 'update', $id)->attributes([
+            'class' => 'form-horizontal',
+            'enctype' => 'multipart/form-data',
+        ])->open() }}
+
     <div class="card-body">
 
       @include('layouts.partials._notif')

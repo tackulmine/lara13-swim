@@ -6,13 +6,19 @@
       <h5 class="m-0 font-weight-bold text-primary">{{ $pageTitle }}</h5>
     </div>
     <!-- /.box-header -->
-    {!! Form::open([
+    {{-- {!! Form::open([
         'route' => $baseRouteName . 'store',
         'class' => 'needs-validation',
         'novalidate' => true,
         'files' => true,
         'autocomplete' => 'off',
-    ]) !!}
+    ]) !!} --}}
+    {{ html()->form('POST')->route($baseRouteName . 'store')->attributes([
+            'class' => 'needs-validation',
+            'novalidate' => true,
+            'enctype' => 'multipart/form-data',
+            'autocomplete' => 'off',
+        ])->open() }}
     <div class="card-body">
 
       @include('layouts.partials._notif')

@@ -75,14 +75,19 @@
             </div>
           </div>
         @else
-          {!! Form::open([
+          {{-- {!! Form::open([
               'route' => ['competition.register-submit', $event->slug],
               // 'class' => 'needs-validation',
               // 'novalidate' => true,
               'id' => 'event-registration',
               'files' => true,
               'autocomplete' => 'off',
-          ]) !!}
+          ]) !!} --}}
+          {{ html()->form('POST')->route('competition.register-submit', $event->slug)->attributes([
+                  'id' => 'event-registration',
+                  'enctype' => 'multipart/form-data',
+                  'autocomplete' => 'off',
+              ])->open() }}
           <div class="card-body p-3">
             {{-- TESTING ONLY PURPOSE --}}
             {{-- @if (now()->addMinute(1)->format('Y-m-d H:i') == date('Y-m-d H:i', strtotime(config('general.event_registration_end_date')))) --}}
@@ -113,7 +118,7 @@
 
     <!-- List -->
     <div class="@if (empty($registrationSchool) && empty($registrationCoachName)) col-lg col-xl-8 offset-xl-2 col-xxl-6 offset-xxl-3 @else col @endif">
-      {!! Form::open([
+      {{-- {!! Form::open([
           'route' => ['competition.register', $event->slug],
           // 'class' => 'needs-validation',
           // 'novalidate' => true,
@@ -121,7 +126,12 @@
           // 'files' => true,
           'method' => 'get',
           'autocomplete' => 'off',
-      ]) !!}
+      ]) !!} --}}
+      {{ html()->form('GET')->route('competition.register', $event->slug)->attributes([
+              'id' => 'event-registration-search',
+              // 'enctype' => 'multipart/form-data',
+              'autocomplete' => 'off',
+          ])->open() }}
       <div class="card shadow mb-4">
         <div class="card-header p-3">
           <h5 class="m-0 font-weight-bold">

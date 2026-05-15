@@ -19,12 +19,16 @@
     </div>
     <div class="card-body">
       <div class="table-filters">
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => $baseRouteName . 'index',
             'class' => 'needs-validation',
             'novalidate' => true,
             'method' => 'get',
-        ]) !!}
+        ]) !!} --}}
+        {{ html()->form('GET')->route($baseRouteName . 'index')->attributes([
+                'class' => 'needs-validation',
+                'novalidate' => true,
+            ])->open() }}
         <div class="row">
           <div class="col-sm-8">
             <div class="form-group row">

@@ -7,7 +7,8 @@
   {{-- NO MORE STAGE --}}
   @if ($isAllStagesCompleted)
     @auth
-      {!! Form::open(['url' => '/competition/' . $event->slug . '/done', 'method' => 'put']) !!}
+      {{-- {!! Form::open(['url' => '/competition/' . $event->slug . '/done', 'method' => 'put']) !!} --}}
+      {{ html()->form('PUT', '/competition/' . $event->slug . '/done')->attributes([])->open() }}
       <p class="text-center">Klik tombol di bawah untuk mengakhiri kompetisi!</p>
       <p class="text-center my-2"><button class="btn btn-sm btn-warning" type="submit"
           onclick="return confirm('YAKIN MENGAKHIRI KOMPETISI ??? \n\nKlik \'Cancel\' jika ragu untuk cek ulang!')">Akhiri
@@ -18,8 +19,11 @@
     {{-- NO MORE SESSION --}}
     @if ($eventSession->completed)
       @auth
-        {!! Form::open(['url' => '/competition/' . $event->slug . '/complete', 'method' => 'put']) !!}
-        {!! Form::hidden('event_stage', $eventStage->id) !!}
+        {{-- {!! Form::open(['url' => '/competition/' . $event->slug . '/complete', 'method' => 'put']) !!}
+        {!! Form::hidden('event_stage', $eventStage->id) !!} --}}
+        {{ html()->form('PUT', '/competition/' . $event->slug . '/complete')->attributes([])->open() }}
+        {{ html()->hidden('event_stage', $eventStage->id) }}
+
         <p class="text-center">Klik tombol di bawah untuk melanjutkan acara lain!</p>
         <p class="text-center my-2"><button class="btn btn-sm btn-primary" type="submit"
             onclick="return confirm('YAKIN MELANJUTKAN ACARA ?? \n\nKlik \'Cancel\' jika ragu untuk cek ulang!')">Acara
@@ -42,13 +46,19 @@
         <p class="text-right">
           <a href="javascript:;" class="text-white" id="input-excel-form-toggle">Input from excel?</a>
         </p>
-        {!! Form::open([
+        {{-- {!! Form::open([
             'url' => '/competition/' . $event->slug,
             'method' => 'post',
             'autocomplete' => 'off',
             'id' => 'input-excel-form',
             'class' => 'd-none',
-        ]) !!}
+        ]) !!} --}}
+        {{ html()->form('POST', '/competition/' . $event->slug)->attributes([
+                'id' => 'input-excel-form',
+                'class' => 'd-none',
+                'autocomplete' => 'off',
+            ])->open() }}
+
         <div class="row mb-3">
           <div class="col-md-12 mb-2">
             {{-- {!! Form::label('Input from excel?') !!} --}}
@@ -65,14 +75,20 @@
         {{ html()->form()->close() }}
       @endauth
       @auth
-        {!! Form::open([
+        {{-- {!! Form::open([
             'url' => '/competition/' . $event->slug . '/update',
             'method' => 'put',
             'autocomplete' => 'off',
             'id' => 'competition-form',
         ]) !!}
         {!! Form::hidden('event_stage', $eventStage->id) !!}
-        {!! Form::hidden('event_session', $eventSession->id) !!}
+        {!! Form::hidden('event_session', $eventSession->id) !!} --}}
+        {{ html()->form('PUT', '/competition/' . $event->slug . '/update')->attributes([
+                'id' => 'competition-form',
+                'autocomplete' => 'off',
+            ])->open() }}
+        {{ html()->hidden('event_stage', $eventStage->id) }}
+        {{ html()->hidden('event_session', $eventSession->id) }}
       @endauth
       @php
         $j = 1;

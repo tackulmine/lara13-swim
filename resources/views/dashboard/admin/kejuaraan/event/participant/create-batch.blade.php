@@ -13,13 +13,19 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => [$baseRouteName . 'store-batch', $event],
             'class' => 'needs-validation',
             'novalidate' => true,
             // 'files' => true,
             'autocomplete' => 'off',
-        ]) !!}
+        ]) !!} --}}
+        {{ html()->form('POST')->route($baseRouteName . 'store-batch', $event)->attributes([
+                'class' => 'needs-validation',
+                'novalidate' => true,
+                // 'enctype' => 'multipart/form-data',
+                'autocomplete' => 'off',
+            ])->open() }}
         <div class="card-body">
 
           @include('layouts.partials._notif')

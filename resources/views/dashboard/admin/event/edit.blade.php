@@ -18,6 +18,7 @@
             'enctype' => 'multipart/form-data',
         ])->open() }}
     {{ html()->hidden('id', $id) }}
+
     <div class="card-body">
 
       @include('layouts.partials._notif')

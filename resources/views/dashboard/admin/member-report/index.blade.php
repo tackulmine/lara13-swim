@@ -12,12 +12,18 @@
     </div>
     <div class="card-body">
       <div class="mb-4">
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => $baseRouteName . 'index',
             'class' => 'needs-validation',
             'novalidate' => true,
             'method' => 'get',
-        ]) !!}
+        ]) !!} --}}
+        {{ html()->form('POST')->route($baseRouteName . 'index')->attributes([
+                'class' => 'needs-validation',
+                'novalidate' => true,
+                // 'enctype' => 'multipart/form-data',
+                'autocomplete' => 'off',
+            ])->open() }}
 
         {{ Form::bs4HorSelect(
             'user_id',

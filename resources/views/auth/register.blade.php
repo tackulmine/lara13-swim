@@ -28,7 +28,7 @@
             {{ html()->form('POST')->route('register')->attributes([
                     'id' => 'member-registration',
                     'class' => 'user',
-                    'files' => true,
+                    'enctype' => 'multipart/form-data',
                     'autocomplete' => 'off',
                 ])->open() }}
 

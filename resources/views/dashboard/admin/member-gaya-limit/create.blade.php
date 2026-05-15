@@ -11,11 +11,17 @@
         <!-- form start -->
         {{-- <form class="form-horizontal" action="{{ route($baseRouteName.'store') }}">
         </form> --}}
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => $baseRouteName . 'store',
             'class' => 'needs-validation',
             'novalidate' => true,
-        ]) !!}
+        ]) !!} --}}
+        {{ html()->form('POST')->route($baseRouteName . 'store')->attributes([
+                'class' => 'needs-validation',
+                'novalidate' => true,
+                // 'enctype' => 'multipart/form-data',
+                // 'autocomplete' => 'off',
+            ])->open() }}
         <div class="card-body">
 
           @include('layouts.partials._notif')

@@ -45,7 +45,7 @@
             @endforelse
           </tbody>
         </table>
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => [$baseRouteName . 'set-ordering', $event->id],
             'id' => 'reorder-form',
             // 'class' => 'form-horizontal',
@@ -53,7 +53,13 @@
             // 'files' => true,
             'method' => 'put',
         ]) !!}
-        {{ Form::hidden('items_id') }}
+        {{ Form::hidden('items_id') }} --}}
+        {{ html()->form('PUT')->route($baseRouteName . 'set-ordering', $event->id)->attributes([
+                'id' => 'reorder-form',
+                'class' => 'form-disabled-submit',
+            ])->open() }}
+        {{ html()->hidden('items_id') }}
+
         <div class="text-center">
           <button type="submit" class="btn btn-primary mb-2 mb-md-0">
             <i class="fas fa-save"></i>

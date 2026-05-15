@@ -9,13 +9,19 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        {!! Form::open([
+        {{-- {!! Form::open([
             'route' => [$baseRouteName . 'update', $id],
             'class' => 'needs-validation',
             'novalidate' => true,
             'method' => 'put',
         ]) !!}
-        {{ Form::hidden('id', $id) }}
+        {{ Form::hidden('id', $id) }} --}}
+        {{ html()->form('PUT')->route($baseRouteName . 'update', $id)->attributes([
+                'class' => 'needs-validation',
+                'novalidate' => true,
+            ])->open() }}
+        {{ html()->hidden('id', $id) }}
+
         <div class="card-body">
 
           @include('layouts.partials._notif')
