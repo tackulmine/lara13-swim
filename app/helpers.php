@@ -5,10 +5,10 @@ use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Laravel\Facades\Image;
 
 if (! function_exists('generateMediaSource')) {
-    function generateMediaSource($mediaUrl, $suffix = '_200x200')
+    function generateMediaSource(string $mediaUrl, string $suffix = '_200x200')
     {
         if (empty($mediaUrl)) {
             return;
@@ -54,7 +54,7 @@ if (! function_exists('getDateFormatModel')) {
 }
 
 if (! function_exists('getUserFormatModel')) {
-    function getUserFormatModel($name, $email)
+    function getUserFormatModel(string $name, string $email)
     {
         if (empty($name)) {
             return;
@@ -72,14 +72,14 @@ if (! function_exists('getQueryParams')) {
 }
 
 if (! function_exists('getQueryHttpBuilder')) {
-    function getQueryHttpBuilder($prefix = '?')
+    function getQueryHttpBuilder(string $prefix = '?')
     {
         return request()->query() ? $prefix.http_build_query(getQueryParams()) : '';
     }
 }
 
 if (! function_exists('generateRandomCharacter')) {
-    function generateRandomCharacter($count = 0)
+    function generateRandomCharacter(int $count = 0)
     {
         if (empty($count)) {
             $count = 16;
@@ -101,7 +101,7 @@ if (! function_exists('generateRandomCharacter')) {
 }
 
 if (! function_exists('cleanWhiteSpace')) {
-    function cleanWhiteSpace($string)
+    function cleanWhiteSpace(string $string)
     {
         if (empty($string)) {
             return $string;
@@ -118,7 +118,7 @@ if (! function_exists('cleanWhiteSpace')) {
 }
 
 if (! function_exists('cleanPhoneNumber')) {
-    function cleanPhoneNumber($string)
+    function cleanPhoneNumber(string $string)
     {
         if (empty($string)) {
             return $string;
@@ -138,14 +138,14 @@ if (! function_exists('humanize')) {
      * @param  string  $separator  Input separator
      * @return string
      */
-    function humanize($str, $separator = '_')
+    function humanize(string $str, string $separator = '_')
     {
         return ucwords(preg_replace('/['.preg_quote($separator).']+/', ' ', trim(false ? mb_strtolower($str) : strtolower($str))));
     }
 }
 
 if (! function_exists('parseBetweenDate')) {
-    function parseBetweenDate($date1, $date2, $monthFormat = 'M')
+    function parseBetweenDate(string $date1, string $date2, string $monthFormat = 'M')
     {
         $date1 = ! is_int($date1) ? strtotime($date1) : $date1;
         $date2 = ! is_int($date2) ? strtotime($date2) : $date2;
@@ -174,7 +174,7 @@ if (! function_exists('parseBetweenDate')) {
 }
 
 if (! function_exists('parseBetweenDateCustom')) {
-    function parseBetweenDateCustom($date1, $date2, $customFormat = 'F Y')
+    function parseBetweenDateCustom(string $date1, string $date2, string $customFormat = 'F Y')
     {
         $date1 = ! is_int($date1) ? strtotime($date1) : $date1;
         $date2 = ! is_int($date2) ? strtotime($date2) : $date2;
@@ -204,7 +204,7 @@ if (! function_exists('parseBetweenDateCustom')) {
 }
 
 if (! function_exists('parseBetweenDateTime')) {
-    function parseBetweenDateTime($date1, $date2, $monthFormat = 'M')
+    function parseBetweenDateTime(string $date1, string $date2, string $monthFormat = 'M')
     {
         $date1 = ! is_int($date1) ? strtotime($date1) : $date1;
         $date2 = ! is_int($date2) ? strtotime($date2) : $date2;
@@ -241,7 +241,7 @@ if (! function_exists('parseBetweenDateTime')) {
 }
 
 if (! function_exists('uploadAvatar')) {
-    function uploadAvatar(UploadedFile $uploadedFile, $newFileName)
+    function uploadAvatar(UploadedFile $uploadedFile, string $newFileName)
     {
         // $uploadedFileName = $uploadedFile->getClientOriginalName();
         // $oriFileName = Str::slug(pathinfo($uploadedFileName, PATHINFO_FILENAME));
@@ -258,8 +258,8 @@ if (! function_exists('uploadAvatar')) {
         $uploadedFile->storeAs($directory, $fileName, 'shared');
 
         // resize file
-        Image::make($uploadedFile)
-            ->fit(300, 400) // 3/4
+        Image::decode($uploadedFile)
+            ->cover(300, 400) // 3/4
             ->save(config('filesystems.disks.shared.root')."/{$directory}/".$thumbFileName);
 
         return "{$directory}/".$thumbFileName;
@@ -267,7 +267,7 @@ if (! function_exists('uploadAvatar')) {
 }
 
 if (! function_exists('uploadEventPhoto')) {
-    function uploadEventPhoto(UploadedFile $uploadedFile, $newFileName)
+    function uploadEventPhoto(UploadedFile $uploadedFile, string $newFileName)
     {
         $oriFileExt = strtolower($uploadedFile->extension());
 
@@ -281,8 +281,8 @@ if (! function_exists('uploadEventPhoto')) {
         $uploadedFile->storeAs($directory, $fileName, 'shared');
 
         // resize file
-        Image::make($uploadedFile)
-            ->fit(100, 100) // 1/1
+        Image::decode($uploadedFile)
+            ->cover(100, 100) // 1/1
             ->save(config('filesystems.disks.shared.root')."/{$directory}/".$thumbFileName);
 
         return "{$directory}/".$thumbFileName;
@@ -290,7 +290,7 @@ if (! function_exists('uploadEventPhoto')) {
 }
 
 if (! function_exists('uploadEventRegistrationFile')) {
-    function uploadEventRegistrationFile(UploadedFile $uploadedFile, $newFileName, $suffixDirectory = '')
+    function uploadEventRegistrationFile(UploadedFile $uploadedFile, string $newFileName, string $suffixDirectory = '')
     {
         $oriFileExt = strtolower($uploadedFile->extension());
 
@@ -309,20 +309,16 @@ if (! function_exists('uploadEventRegistrationFile')) {
 
         if (in_array($oriFileExt, ['jpg', 'jpeg', 'png'])) {
             // resize file 1000px
-            Image::make($uploadedFile)
-                ->resize(1000, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
+            Image::decode($uploadedFile)
+                ->scaleDown(1000)
                 ->save(config('filesystems.disks.shared.root')."/{$directory}/".$newFileName.'_1000'.'.'.$oriFileExt);
             // resize file 200px
-            Image::make($uploadedFile)
-                ->resize(200, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
+            Image::decode($uploadedFile)
+                ->scaleDown(200)
                 ->save(config('filesystems.disks.shared.root')."/{$directory}/".$newFileName.'_200'.'.'.$oriFileExt);
             // resize n crop file
-            Image::make($uploadedFile)
-                ->fit(100, 100) // 1/1
+            Image::decode($uploadedFile)
+                ->cover(100, 100) // 1/1
                 ->save(config('filesystems.disks.shared.root')."/{$directory}/".$newFileName.'_100x100'.'.'.$oriFileExt);
         }
 
@@ -331,7 +327,7 @@ if (! function_exists('uploadEventRegistrationFile')) {
 }
 
 if (! function_exists('uploadMemberFile')) {
-    function uploadMemberFile(UploadedFile $uploadedFile, $newFileName, $suffixDirectory = '')
+    function uploadMemberFile(UploadedFile $uploadedFile, string $newFileName, string $suffixDirectory = '')
     {
         $oriFileExt = strtolower($uploadedFile->extension());
 
@@ -350,20 +346,16 @@ if (! function_exists('uploadMemberFile')) {
 
         if (in_array($oriFileExt, ['jpg', 'jpeg', 'png'])) {
             // resize file 1000px
-            Image::make($uploadedFile)
-                ->resize(1000, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
+            Image::decode($uploadedFile)
+                ->scaleDown(1000)
                 ->save(config('filesystems.disks.shared.root')."/{$directory}/".$newFileName.'_1000'.'.'.$oriFileExt);
             // resize file 200px
-            Image::make($uploadedFile)
-                ->resize(200, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
+            Image::decode($uploadedFile)
+                ->scaleDown(200)
                 ->save(config('filesystems.disks.shared.root')."/{$directory}/".$newFileName.'_200'.'.'.$oriFileExt);
             // resize n crop file
-            Image::make($uploadedFile)
-                ->fit(100, 100) // 1/1
+            Image::decode($uploadedFile)
+                ->cover(100, 100) // 1/1
                 ->save(config('filesystems.disks.shared.root')."/{$directory}/".$newFileName.'_100x100'.'.'.$oriFileExt);
         }
 
@@ -372,7 +364,7 @@ if (! function_exists('uploadMemberFile')) {
 }
 
 if (! function_exists('getFileCustomSize')) {
-    function getFileCustomSize($fileUrl = '', $size = 1000)
+    function getFileCustomSize(string $fileUrl = '', int $size = 1000)
     {
         if (empty($fileUrl)) {
             return '';
@@ -390,7 +382,7 @@ if (! function_exists('getFileCustomSize')) {
 }
 
 if (! function_exists('getAvatar')) {
-    function getAvatar($avatar, $email, $size = 200)
+    function getAvatar(string $avatar, string $email, int $size = 200)
     {
         if (! empty($avatar)) {
             return $avatar;
@@ -408,7 +400,7 @@ if (! function_exists('getGenders')) {
 }
 
 if (! function_exists('parseGender')) {
-    function parseGender($gender)
+    function parseGender(string $gender)
     {
         $genderText = '';
         switch ($gender) {
@@ -428,7 +420,7 @@ if (! function_exists('parseGender')) {
 }
 
 if (! function_exists('parseGenderAbbr')) {
-    function parseGenderAbbr($gender)
+    function parseGenderAbbr(string $gender)
     {
         $genderText = '';
         switch ($gender) {
@@ -451,7 +443,7 @@ if (! function_exists('parseGenderAbbr')) {
 }
 
 if (! function_exists('parseGenderText')) {
-    function parseGenderText($gender)
+    function parseGenderText(string $gender)
     {
         $genderText = '';
         switch ($gender) {
@@ -460,6 +452,7 @@ if (! function_exists('parseGenderText')) {
                 break;
             case 'female':
                 $genderText = 'Perempuan';
+                break;
             case 'mix':
                 $genderText = 'Mix';
                 break;
@@ -473,7 +466,7 @@ if (! function_exists('parseGenderText')) {
 }
 
 if (! function_exists('parsePointToInt')) {
-    function parsePointToInt($point)
+    function parsePointToInt(string $point)
     {
         if (empty($point)) {
             return '';
@@ -484,7 +477,7 @@ if (! function_exists('parsePointToInt')) {
 }
 
 if (! function_exists('parsePointToDecimal')) {
-    function parsePointToDecimal($point, $decLen = 2)
+    function parsePointToDecimal(string $point, int $decLen = 2)
     {
         if (empty($point)) {
             return '';
@@ -506,7 +499,7 @@ if (! function_exists('parsePointToDecimal')) {
 }
 
 if (! function_exists('normalizePointMinSecMilli')) {
-    function normalizePointMinSecMilli($point, $decLen = 2)
+    function normalizePointMinSecMilli(string $point, int $decLen = 2)
     {
         if (empty($point)) {
             return '';
@@ -531,7 +524,7 @@ if (! function_exists('normalizePointMinSecMilli')) {
 }
 
 if (! function_exists('normalizePoint')) {
-    function normalizePoint($point, $decLen = 2)
+    function normalizePoint(string $point, int $decLen = 2)
     {
         if (empty($point)) {
             return '00:00.'.str_pad('', $decLen, '0', STR_PAD_RIGHT);
@@ -573,7 +566,7 @@ if (! function_exists('normalizePoints')) {
 }
 
 if (! function_exists('numberFormatIdn')) {
-    function numberFormatIdn($number, $decimalLength = 0, $decimalPoint = ',', $separator = '.')
+    function numberFormatIdn(float $number, int $decimalLength = 0, string $decimalPoint = ',', string $separator = '.')
     {
         // $number = 1234.5678;
         $formattedNumber = number_format($number, $decimalLength, $decimalPoint, $separator);
@@ -583,7 +576,7 @@ if (! function_exists('numberFormatIdn')) {
 }
 
 if (! function_exists('strSquish')) {
-    function strSquish($value)
+    function strSquish(string $value)
     {
         return preg_replace('~(\s|\x{3164}|\x{1160})+~u', ' ', preg_replace('~^[\s\x{FEFF}]+|[\s\x{FEFF}]+$~u', '', $value));
     }
@@ -667,7 +660,7 @@ if (! function_exists('getRelegions')) {
 }
 
 if (! function_exists('getRelegionNameBySlug')) {
-    function getRelegionNameBySlug($slug)
+    function getRelegionNameBySlug(string $slug)
     {
         $relegions = getRelegions();
 
@@ -692,7 +685,7 @@ if (! function_exists('getEducations')) {
 }
 
 if (! function_exists('getEducationNameBySlug')) {
-    function getEducationNameBySlug($slug)
+    function getEducationNameBySlug(string $slug)
     {
         $educations = getEducations();
 
@@ -701,7 +694,7 @@ if (! function_exists('getEducationNameBySlug')) {
 }
 
 if (! function_exists('extractNumbers')) {
-    function extractNumbers($string)
+    function extractNumbers(string $string)
     {
         // Pattern to match one or more digits, optionally followed by a decimal part
         $pattern = '/\\d+(\\.\\d+)?/';

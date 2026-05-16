@@ -87,13 +87,14 @@ class Event extends BaseModel
     public function getPhotoUrlAttribute()
     {
         $photo = $this->photo;
-        $storage = Storage::disk('shared');
+        $storage = Storage::disk();
 
         if (empty($photo) || $storage->missing($photo)) {
             return;
         }
 
-        $filePath = config('filesystems.disks.shared.root').'/'.$photo;
+        // $filePath = config('filesystems.disks.shared.root').'/'.$photo;
+        $filePath = $storage->path($photo);
 
         return asset($storage->url($photo).(is_file($filePath) ? '?'.filemtime($filePath) : ''));
     }
@@ -104,7 +105,24 @@ class Event extends BaseModel
             return;
         }
 
-        return '<img src="'.$this->photo_url.'" alt="'.$this->name.'" height="100">';
+        return '<img src="'.$this->photo_url.'" alt="'.$this->name.'"  style="width: auto; height: 100px;" height="100">';
+    }
+
+    public function getPreviewPhotoPdfAttribute()
+    {
+        if (empty($this->photo_url)) {
+            return;
+        }
+
+        $path = Storage::path($this->photo);
+
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+
+        $filePath = base64_encode(
+            file_get_contents($path)
+        );
+
+        return '<img src="data:image/'.$type.';base64,'.$filePath.'" alt="'.$this->name.'"  style="width: auto; height: 100px;" height="100">';
     }
 
     public function getPreviewTinyPhotoAttribute()
@@ -119,7 +137,7 @@ class Event extends BaseModel
     public function getPhotoRightUrlAttribute()
     {
         $photoRight = $this->photo_right;
-        $storage = Storage::disk('shared');
+        $storage = Storage::disk();
 
         if (empty($photoRight) || $storage->missing($photoRight)) {
             return;
@@ -136,7 +154,23 @@ class Event extends BaseModel
             return $this->preview_photo;
         }
 
-        return '<img src="'.$this->photo_right_url.'" alt="'.$this->name.'" height="100">';
+        return '<img src="'.$this->photo_right_url.'" alt="'.$this->name.'"  style="width: auto; height: 100px;" height="100">';
+    }
+
+    public function getPreviewPhotoRightPdfAttribute()
+    {
+        if (empty($this->photo_right_url)) {
+            return;
+        }
+
+        $path = Storage::path($this->photo_right);
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+
+        $filePath = base64_encode(
+            file_get_contents($path)
+        );
+
+        return '<img src="data:image/'.$type.';base64,'.$filePath.'" alt="'.$this->name.'"  style="width: auto; height: 100px;" height="100">';
     }
 
     public function getPreviewTinyPhotoRightAttribute()
@@ -245,7 +279,7 @@ class Event extends BaseModel
     public function getQrCodeUrlAttribute()
     {
         $photo = 'events/'.$this->slug.'.png';
-        $storage = Storage::disk('shared');
+        $storage = Storage::disk();
 
         if ($storage->missing($photo)) {
             $qr = QrCode::format('png')->size(200)->margin(2)->generate(route('competition.detail', $this->slug).'/registration');

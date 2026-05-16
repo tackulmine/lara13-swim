@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fe13b688694288a4a60be7be1c62512",
+    "content-hash": "24e76c6e4d7383fc55946be403e84ec1",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -555,6 +555,69 @@
                 }
             ],
             "time": "2025-08-20T19:15:30+00:00"
+        },
+        {
+            "name": "creativeorange/gravatar",
+            "version": "v1.0.26",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brainpink/gravatar.git",
+                "reference": "3789de373029c8f8b94e0f880e3dc2ac36eac918"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brainpink/gravatar/zipball/3789de373029c8f8b94e0f880e3dc2ac36eac918",
+                "reference": "3789de373029c8f8b94e0f880e3dc2ac36eac918",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5|^6|^7|^8|^9|^10.0|^11.0|^12.0|^13.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "nunomaduro/larastan": "^0.6.2|^2.4",
+                "orchestra/testbench": "^5.4|^8.0|^9.0|^10.0|^11.0",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Gravatar": "Creativeorange\\Gravatar\\Facades\\Gravatar"
+                    },
+                    "providers": [
+                        "Creativeorange\\Gravatar\\GravatarServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Creativeorange\\Gravatar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaco Tijssen",
+                    "email": "jaco@creativeorange.nl",
+                    "homepage": "https://www.creativeorange.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Gravatar package for retrieving gravatar image URLs or checking the existance of an image.",
+            "keywords": [
+                "avatar",
+                "gravatar",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/brainpink/gravatar/issues",
+                "source": "https://github.com/brainpink/gravatar/tree/v1.0.26"
+            },
+            "time": "2026-03-20T23:47:31+00:00"
         },
         {
             "name": "cviebrock/eloquent-sluggable",

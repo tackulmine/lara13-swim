@@ -12,6 +12,7 @@
         "php": "^8.3",
         "barryvdh/laravel-dompdf": "^3.1",
         "biiiiiigmonster/hasin": "^5.1",
+        "creativeorange/gravatar": "^1.0",
         "cviebrock/eloquent-sluggable": "^13.0",
         "doctrine/dbal": "^4.4",
         "intervention/image-laravel": "^4.0",

@@ -108,25 +108,21 @@ class DownloadEventBookController extends BaseController
             'minTrack' => $minTrack,
             'maxTrack' => $maxTrack,
             // 'maxTracks' => $maxTracks,
-        ]);
-        $pdf->setPaper('folio');
+        ])->setPaper('folio', 'portrait');
 
-        // $pdf->setOption('enable-javascript', true);
-        // $pdf->setOption('javascript-delay', 5000);
-        // $pdf->setOption('enable-smart-shrinking', true);
-        // $pdf->setOption('no-stop-slow-scripts', true);
-        // $pdf->setOption('margin-top', '30mm');
-        // $pdf->setOption('margin-bottom', '15mm');
-        // $pdf->setOption('margin-left', '8mm');
-        // $pdf->setOption('margin-right', '8mm');
-        // $pdf->setOption('header-html', $headerHtml);
-        // $pdf->setOption('footer-html', $footerHtml);
+        $pdf->setOption([
+            'dpi' => 150,
+            'defaultFont' => 'Bahnschrift',
+            'enable_php' => true,
+        ]);
+
+        // $pdf->setPaper('legal-folio', 'portrait');
+        // Ukuran Folio dalam point: 612 x 936
+        // $customPaper = [0, 0, 612, 936];
+        // $pdf->setPaper($customPaper, 'portrait');
 
         // if (!app()->environment('production')) {
-
-        $pdf->setOption(['enable_php' => true, 'dpi' => 150, 'defaultFont' => 'Bahnschrift']);
-
-        return $pdf->stream($filename.'.pdf', ['Attachment' => false]);
+        return $pdf->stream($filename.'.pdf');
         // }
 
         // return $pdf->download($filename . '.pdf');

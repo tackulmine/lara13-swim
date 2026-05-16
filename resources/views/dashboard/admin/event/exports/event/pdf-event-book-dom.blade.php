@@ -15,8 +15,8 @@
 
     body {
       font-family: "Bahnschrift", sans-serif;
-      font-size: .9rem;
-      line-height: 1rem;
+      font-size: .75em;
+      line-height: .9em;
     }
 
     h1,
@@ -31,7 +31,37 @@
     .h4,
     .h5,
     .h6 {
-      line-height: 1;
+      line-height: .9em;
+    }
+
+    h1,
+    .h1 {
+      font-size: 2.3rem;
+    }
+
+    h2,
+    .h2 {
+      font-size: 1.8rem;
+    }
+
+    h3,
+    .h3 {
+      font-size: 1.55rem;
+    }
+
+    h4,
+    .h4 {
+      font-size: 1.3rem;
+    }
+
+    h5,
+    .h5 {
+      font-size: 1.05rem;
+    }
+
+    h6,
+    .h6 {
+      font-size: .8rem;
     }
 
     .table td,
@@ -62,17 +92,21 @@
 
     /** Define the margins of your page **/
     @page {
-      margin: 230px 50px 80px 50px;
+      /* margin: 230px 50px 80px 50px; */
+      margin: 200px 50px 70px 50px;
+      /* size: a3 portrait; */
+      /* OR folio */
+      size: 8.5in 13in;
     }
 
     header {
       position: fixed;
-      top: -210px;
+      top: -200px;
       left: 0px;
       right: 0px;
       height: 100px;
       text-align: center;
-      line-height: 1rem;
+      line-height: .9em;
     }
 
     footer {
@@ -90,11 +124,11 @@
 <body>
   <!-- Define header and footer blocks BEFORE main content -->
   <header>
-    <div class="pt-2 pb-3">
+    <div class="pt-4">
       <table class="w-100">
         <tr>
           <td width="20%" class="text-left">
-            {{-- {!! $event->preview_photo !!} --}}
+            {!! $event->preview_photo_pdf !!}
           </td>
           <td class="text-center" style="vertical-align: middle;">
             <h5 class="mb-0">{{ $event->name }}</h5>
@@ -103,7 +137,7 @@
             <h4 style="font-weight: bold;">BUKU ACARA</h4>
           </td>
           <td width="20%" class="text-right">
-            {{-- {!! $event->preview_photo_right !!} --}}
+            {!! $event->preview_photo_right_pdf !!}
           </td>
         </tr>
       </table>
@@ -145,7 +179,7 @@
     @foreach ($eventStages as $eventStage)
       <table class="table table-sm table-borderless mb-0">
         <tr style="font-size: larger;">
-          <th style="font-size: x-large;">Acara {{ $eventStage->number_format }}</th>
+          <th style="font-size: larger;">Acara {{ $eventStage->number_format }}</th>
           <th width="37%">{{ strtoupper($eventStage->masterMatchType->name) }}</th>
           <th width="20%" class="text-right">{{ $eventStage->masterMatchCategory->name }}</th>
         </tr>
